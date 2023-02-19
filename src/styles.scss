@@ -1,0 +1,81 @@
+// sass Variables
+
+$maincolor: black;
+$contrastcolor: white;
+
+//Define sass elements
+
+@mixin white-text-black-bg {
+  color: $contrastcolor;
+  background-color: $maincolor;
+}
+
+@mixin black-text-white-bg {
+  color: $maincolor;
+  background-color: $contrastcolor;
+}
+
+//for Header component
+
+nav {
+  @include white-text-black-bg;
+  display: flex;
+  justify-content: flex-start;
+
+  a {
+    @include white-text-black-bg;
+    div {
+      margin: 10px;
+      font-size: large;
+    }
+  }
+}
+
+.form-style {
+  form {
+    input {
+      @include white-text-black-bg;
+      padding: 10px;
+      font-size: 1.1em;
+      margin: 10px;
+
+      &[type="submit"]:hover {
+        @include black-text-white-bg;
+      }
+    }
+  }
+  div {
+    display: grid;
+    flex-wrap: wrap;
+    width: 600px;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+
+    div {
+      grid-template-columns: auto auto auto;
+      justify-content: center;
+      gap: 40px;
+      border: 1px solid green;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
+
+button {
+  @include white-text-black-bg;
+  display: block;
+  margin: auto;
+  font-size: 1 em;
+  padding: 10 px;
+  border: 5 px solid red;
+  border-radius: 50px;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+  border: radiius 90px;
+  object-fit: cover;
+}
