@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function DisplayFood({ food, createFood }) {
+export default function DisplayOrigami({ origami, createOrigami }) {
   const [newForm, setNewForm] = useState({
     posterid: "",
     name: "",
@@ -9,6 +9,7 @@ export default function DisplayFood({ food, createFood }) {
     image: "",
     title: "",
     description: "",
+    reference: "",
     instructions: "",
   }); //initial newForm state
 
@@ -19,7 +20,7 @@ export default function DisplayFood({ food, createFood }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createFood(newForm);
+    createOrigami(newForm);
     setNewForm({
       posterid: "",
       name: "",
@@ -27,6 +28,7 @@ export default function DisplayFood({ food, createFood }) {
       image: "",
       title: "",
       description: "",
+      reference: "",
       instructions: "",
     });
   };
@@ -34,17 +36,19 @@ export default function DisplayFood({ food, createFood }) {
   const loaded = () => {
     return (
       <div>
-        {food.map((food, index) => {
+        {origami.map((origami, index) => {
           return (
-            <div key={food._id}>
-              <h3>Posted by :{food.name}</h3>
-              <h4>Dish name:{food.title}</h4>
-              <img src={food.image} width={200} alt={food.name} />
-              <p>Description:{food.description}</p>
-              <p>Instructions:{food.instructions}</p>
+            <div key={origami._id}>
+              <h4>Posted by :{origami.name}</h4>
+              <h1>{origami.title}</h1>
+              <img src={origami.image} width={200} alt={origami.name} />
+              <p>Description:{origami.description}</p>
+              <p>Visual reference:</p>
+              <img src={origami.reference} width={400} alt={origami.name} />
+              <p>Instructions:{origami.instructions}</p>
               <button>Like</button>
-              <p style={{ display: "inline" }}>Likes:{food.likes}</p>
-              <Link style={{ display: "block" }} to={`/food/${food._id}`}>
+              <p style={{ display: "inline" }}>Likes:{origami.likes}</p>
+              <Link style={{ display: "block" }} to={`/origami/${origami._id}`}>
                 Edit
               </Link>
             </div>
@@ -107,6 +111,14 @@ export default function DisplayFood({ food, createFood }) {
           placeholder="description"
           onChange={handleChange}
         />
+        Reference:
+        <input
+          type="text"
+          name="image"
+          value={newForm.reference}
+          placeholder="visual reference"
+          onChange={handleChange}
+        />
         Instructions:
         <textarea
           cols="80"
@@ -116,10 +128,10 @@ export default function DisplayFood({ food, createFood }) {
           placeholder="instructions"
           onChange={handleChange}
         />
-        <button type="submit">Create Recipe</button>
+        <button type="submit">Post Origami</button>
       </form>
-      {food ? loaded() : loading()}
+      {origami ? loaded() : loading()}
     </section>
   );
-  //food ? loaded() : loading();
+  //origami ? loaded() : loading();
 }

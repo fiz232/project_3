@@ -1,26 +1,26 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function EditFood({ food, editFood, deleteFood }) {
+export default function EditOrigami({ origami, editOrigami, deleteOrigami }) {
   const params = useParams(); // a hook from react router dom
   const id = params.id; //getting the id from the url! (url param)
   console.log(id);
 
-
   const navigate = useNavigate();
 
-  const dish = food.find(
+  const art = origami.find(
     (p) => p._id === id //array method to find object matching the id
   );
 
   const [newForm, setNewForm] = useState({
-    posterid: dish.posterid,
-    name: dish.name,
-    likes: dish.likes,
-    image: dish.image,
-    title: dish.title,
-    description: dish.description,
-    instructions: dish.instructions,
+    posterid: art.posterid,
+    name: art.name,
+    likes: art.likes,
+    image: art.image,
+    title: art.title,
+    description: art.description,
+    reference: art.reference,
+    instructions: art.instructions,
   });
 
   //Handlers
@@ -36,21 +36,23 @@ export default function EditFood({ food, editFood, deleteFood }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editFood(newForm, id);
+    editOrigami(newForm, id);
   };
 
   const del = (event) => {
-    deleteFood(dish._id);
+    deleteOrigami(art._id);
     navigate("/"); //this is a redirect to another URL view
   };
 
   return (
     <div>
-      <h1>Posted by :{dish.name}</h1>
-      <h2>Dish name:{dish.title}</h2>
-      <img src={dish.image} width={200} alt={dish.name} />
-      <p>Description:{dish.description}</p>
-      <p>Instructions:{dish.instructions}</p>
+      <h4>Posted by :{art.name}</h4>
+      <h1>{art.title}</h1>
+      <img src={art.image} width={200} alt={art.name} />
+      <p>Description:{art.description}</p>
+      <p>Visual reference:</p>
+      <img src={art.reference} width={400} alt={art.name} />
+      <p>Instructions:{art.instructions}</p>
 
       <form onSubmit={handleSubmit}>
         {/* <input
@@ -85,6 +87,14 @@ export default function EditFood({ food, editFood, deleteFood }) {
           placeholder="description"
           onChange={handleChange}
         />
+        Visual reference:
+        <input
+          type="text"
+          name="reference"
+          value={newForm.reference}
+          placeholder="visual reference"
+          onChange={handleChange}
+        />
         Instructions:
         <textarea
           cols="80"
@@ -94,11 +104,10 @@ export default function EditFood({ food, editFood, deleteFood }) {
           placeholder="instructions"
           onChange={handleChange}
         />
-        <button type="submit">Edit Recipe</button>
+        <button type="submit">Edit Origami</button>
       </form>
-      <button onClick={del}>Delete Recipe</button>
-      {/* {food ? loaded() : loading()} */}
+      <button onClick={del}>Delete Origami</button>
+      {/* {origami ? loaded() : loading()} */}
     </div>
   );
-
 }
