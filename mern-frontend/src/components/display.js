@@ -97,18 +97,6 @@ export default function DisplayOrigami({ origami, createOrigami }) {
           onChange={handleChange}
         />
         Image:
-        {/* <Form.Group
-          controlId="formFileMultiple"
-          className="mb-3"
-          type="text"
-          name="image"
-          value={newForm.image}
-          placeholder="image"
-          onChange={handleChange}
-        >
-          <Form.Label>Multiple files input example</Form.Label>
-          <Form.Control type="file" multiple />
-        </Form.Group> */}
         <input
           type="text"
           name="image"
