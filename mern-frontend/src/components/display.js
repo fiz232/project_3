@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export default function DisplayOrigami({ origami, createOrigami }) {
   const [newForm, setNewForm] = useState({
@@ -102,15 +104,6 @@ export default function DisplayOrigami({ origami, createOrigami }) {
           placeholder="image"
           onChange={handleChange}
         />
-        Description:
-        <textarea
-          cols="60"
-          rows="5"
-          name="description"
-          value={newForm.description}
-          placeholder="description"
-          onChange={handleChange}
-        />
         Reference:
         <input
           type="text"
@@ -119,16 +112,35 @@ export default function DisplayOrigami({ origami, createOrigami }) {
           placeholder="visual reference"
           onChange={handleChange}
         />
-        Instructions:
-        <textarea
-          cols="80"
-          rows="20"
-          name="instructions"
-          value={newForm.instructions}
-          placeholder="instructions"
-          onChange={handleChange}
-        />
-        <button type="submit">Post Origami</button>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            cols="60"
+            rows="10"
+            name="description"
+            value={newForm.description}
+            placeholder="description"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea2">
+          <Form.Label>Origami Instructions</Form.Label>
+          <Form.Control
+            as="textarea"
+            cols="80"
+            rows="20"
+            name="instructions"
+            value={newForm.instructions}
+            placeholder="instructions"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button
+          as="input"
+          type="submit"
+          variant="outline-light"
+          value="Post Origami"
+        />{" "}
       </form>
       {origami ? loaded() : loading()}
     </section>
