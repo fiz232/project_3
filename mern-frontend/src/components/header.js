@@ -24,7 +24,6 @@ export default function Header() {
           </Nav>
         </Container>
       </Navbar>
-      ;
     </div>
   );
 }
