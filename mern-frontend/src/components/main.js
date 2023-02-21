@@ -9,7 +9,7 @@ import RegisterPage from "./register";
 //components: <Index/>,<Show/>,
 
 export default function Main() {
-  const URL = "http://localhost:3004/origami/";
+  const URL = "http://localhost:3003/origami/";
 
   const [origami, setOrigami] = useState("");
 
@@ -67,7 +67,9 @@ export default function Main() {
       <Routes>
         <Route
           path="/"
-          element={<DisplayOrigami origami={origami} createOrigami={createOrigami} />}
+          element={
+            <DisplayOrigami origami={origami} createOrigami={createOrigami} />
+          }
         />
 
         <Route path="/about" element={<AboutPage />} />

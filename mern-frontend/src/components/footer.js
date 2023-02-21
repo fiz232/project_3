@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <h6>© Copyright 2023 OrigaMe</h6>;
+  return <p className="footer">© Copyright 2023 OrigaMe</p>;
 }

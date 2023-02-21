@@ -7,8 +7,8 @@ export default function RegisterPage() {
       <div class="form">
         <div class="login">
           <div class="login-header">
-            <h3>LOGIN</h3>
-            <p>Please enter your credentials to login</p>
+            <h3>Register</h3>
+            <p>Create an account</p>
           </div>
         </div>
         <section className="form-style">

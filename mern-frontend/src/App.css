@@ -2,15 +2,44 @@
   text-align: center;
 }
 
-h6 {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  height: auto;
-  width: 100%;
+.footer {
+  bottom: 0;
   color: white;
 }
 
 .about-page {
   color: white;
+  justify-content: center;
+  margin-top: 50px;
+  width: auto;
+  margin-left: 300px;
+}
+
+.header {
+  box-shadow: 0 0 20px 0 rgba(243, 238, 238, 0.2),
+    0 5px 5px 0 rgba(244, 239, 239, 0.24);
+}
+
+.crane {
+  width: 200px;
+}
+
+.plane {
+  width: 200px;
+}
+
+.frog {
+  width: 200px;
+}
+
+.form-style {
+  margin-top: 50px;
+}
+
+.mb-3 {
+  color: white;
+}
+
+.stack {
+  margin-left: 20px;
 }
