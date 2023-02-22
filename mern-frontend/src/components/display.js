@@ -43,10 +43,10 @@ export default function DisplayOrigami({ origami, createOrigami }) {
     return (
       <div class="container">
         <Row>
-          <Col className="d-flex">
+          <Col className="d-flex flex-wrap justify-content-center">
             {origami.map((origami, index) => {
               return (
-                <Card className="m-2" style={{ width: "40rem" }}>
+                <Card className="m-2" style={{ width: "35rem" }}>
                   <Card.Img
                     className="cardImage"
                     variant="top"
