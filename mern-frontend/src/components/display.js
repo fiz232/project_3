@@ -232,7 +232,7 @@ export default function DisplayOrigami({
           </form>
         </div>
       ) : (
-        <p>Please log in to post</p>
+        <h6 style={{ color: "white" }}>Please log in to post</h6>
       )}
 
       {origami ? loaded() : loading()}
