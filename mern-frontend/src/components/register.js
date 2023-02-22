@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import "../login.css";
+import Button from "react-bootstrap/Button";
 
 export default function RegisterPage() {
   const URL = "http://localhost:3004/signup/";
@@ -43,40 +46,58 @@ export default function RegisterPage() {
 
   if (sessionStorage.getItem("loggedInUser") != null) {
     return (
-      <div>
+      <div className="Registered">
         <h1>You are already logged in</h1>
+        <br></br>
+        <Link to="/">
+          {" "}
+          <Button variant="outline-light">Back</Button>
+        </Link>
       </div>
     );
   } else {
     return (
-      <div>
-        <h1>Please enter your details to register</h1>
-        <section className="form-style">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="username"
-              value={newForm.username}
-              placeholder="UserName"
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="email"
-              value={newForm.email}
-              placeholder="Email"
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="password"
-              value={newForm.password}
-              placeholder="Password"
-              onChange={handleChange}
-            />
-            <button type="submit">Register</button>
-          </form>
-        </section>
+      <div class="login-page">
+        <div class="form">
+          <div class="login">
+            <div class="login-header">
+              <h3>Register</h3>
+              <p>Create an account</p>
+            </div>
+          </div>
+          <section className="form-style">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="username"
+                value={newForm.username}
+                placeholder="UserName"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="email"
+                value={newForm.email}
+                placeholder="Email"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="password"
+                value={newForm.password}
+                placeholder="Password"
+                onChange={handleChange}
+              />
+              <button type="submit">Register</button>
+              <br />
+              <br />
+              <p class="message">
+                Already have an account? <br />
+                <Link to="/loginpage">Sign in here</Link>
+              </p>
+            </form>
+          </section>
+        </div>
       </div>
     );
   }

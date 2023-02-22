@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Stack from "react-bootstrap/Stack";
+import "../App.css";
 
 export default function LikeButton({ userLikes, origamiId, editOrigami }) {
   const [likes, setLikes] = useState(userLikes);
@@ -88,9 +91,16 @@ export default function LikeButton({ userLikes, origamiId, editOrigami }) {
   return (
     <div>
       {/* <h1>Number of likes:</h1> */}
-      <p>Current likes is :{likes}</p>
-      <button onClick={handleChange}>Like</button>
-      <button onClick={handleChangeDecrement}>Unlike</button>
+      <h6>Current likes is: {likes}</h6>
+      <br />
+      <Stack className="likeButton" direction="horizontal" gap={3}>
+        <Button variant="outline-success" onClick={handleChange}>
+          Like
+        </Button>
+        <Button variant="outline-danger" onClick={handleChangeDecrement}>
+          Unlike
+        </Button>
+      </Stack>
       {/* <ThemedButton onClick={reset}>Reset</ThemedButton> */}
     </div>
   );
