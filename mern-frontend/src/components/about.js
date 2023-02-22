@@ -1,4 +1,3 @@
-import PushupCounter from "./increment";
 import LikeButton from "./likeButton";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

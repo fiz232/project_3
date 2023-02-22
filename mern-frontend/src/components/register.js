@@ -73,6 +73,7 @@ export default function RegisterPage() {
                 value={newForm.username}
                 placeholder="UserName"
                 onChange={handleChange}
+                required={true}
               />
               <input
                 type="text"
@@ -80,13 +81,15 @@ export default function RegisterPage() {
                 value={newForm.email}
                 placeholder="Email"
                 onChange={handleChange}
+                required={true}
               />
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={newForm.password}
                 placeholder="Password"
                 onChange={handleChange}
+                required={true}
               />
               <button type="submit">Register</button>
               <br />

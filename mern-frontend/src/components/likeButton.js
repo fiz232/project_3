@@ -91,7 +91,7 @@ export default function LikeButton({ userLikes, origamiId, editOrigami }) {
   return (
     <div>
       {/* <h1>Number of likes:</h1> */}
-      <h6>Current likes is: {likes}</h6>
+      <h6>LIKES: {likes}</h6>
       <br />
       <Stack className="likeButton" direction="horizontal" gap={3}>
         <Button variant="outline-success" onClick={handleChange}>

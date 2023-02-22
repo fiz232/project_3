@@ -14,16 +14,27 @@ export default function DisplayOrigami({
   createOrigami,
   editOrigami,
 }) {
+  let userLoggedIn = false;
+  let loggedUserId = "";
+  let loggedUserName = "";
+  if (sessionStorage.getItem("loggedInUser")) {
+    userLoggedIn = true;
+    loggedUserId = JSON.parse(sessionStorage.getItem("loggedInUser"))._id;
+    loggedUserName = JSON.parse(
+      sessionStorage.getItem("loggedInUser")
+    ).username;
+  }
+
   const [newForm, setNewForm] = useState({
-    posterid: "",
-    name: "",
+    posterid: loggedUserId,
+    name: loggedUserName,
     likes: 0,
     img: "",
     title: "",
     description: "",
     reference: "",
     instructions: "",
-  }); //initial newForm state
+  });
 
   const handleChange = (event) => {
     const value = { ...newForm, [event.target.name]: event.target.value };
@@ -34,8 +45,8 @@ export default function DisplayOrigami({
     event.preventDefault();
     createOrigami(newForm);
     setNewForm({
-      posterid: "",
-      name: "",
+      posterid: JSON.parse(sessionStorage.getItem("loggedInUser"))._id,
+      name: JSON.parse(sessionStorage.getItem("loggedInUser")).username,
       likes: 0,
       img: "",
       title: "",
@@ -81,29 +92,33 @@ export default function DisplayOrigami({
                         <br></br>
                         <h6>Instructions:</h6>
                         <p>{origami.instructions}</p>
-                        {sessionStorage.getItem("loggedInUser") ? (
-                          <div>
-                            <LikeButton
-                              userLikes={origami.likes}
-                              origamiId={origami._id}
-                              editOrigami={editOrigami}
-                            />
-                          </div>
-                        ) : (
-                          <h6>You can not like this post unless you log in</h6>
-                        )}
+                        {sessionStorage.getItem("loggedInUser") &&
+                          JSON.parse(sessionStorage.getItem("loggedInUser"))
+                            ._id != origami.posterid && (
+                            <div>
+                              <LikeButton
+                                userLikes={origami.likes}
+                                origamiId={origami._id}
+                                editOrigami={editOrigami}
+                              />
+                            </div>
+                          )}
                         <br />
-                        <Link
-                          style={{ display: "block" }}
-                          to={`/origami/${origami._id}`}
-                        >
-                          <Button
-                            className="col-md-10 mx-auto"
-                            variant="outline-dark"
-                          >
-                            Edit
-                          </Button>
-                        </Link>
+                        {sessionStorage.getItem("loggedInUser") &&
+                          JSON.parse(sessionStorage.getItem("loggedInUser"))
+                            ._id == origami.posterid && (
+                            <Link
+                              style={{ display: "block" }}
+                              to={`/origami/${origami._id}`}
+                            >
+                              <Button
+                                className="col-md-10 mx-auto"
+                                variant="outline-dark"
+                              >
+                                Edit
+                              </Button>
+                            </Link>
+                          )}
                       </Card.Text>
                     </div>
                   </Card.Body>
@@ -124,91 +139,102 @@ export default function DisplayOrigami({
     <section className="form-style">
       <h1 style={{ color: "white" }}>Post Your Own Origami Instructions!</h1>
       <br></br>
-      <div class="container">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="hidden"
-            name="name"
-            value={newForm.name}
-            placeholder="name"
-            onChange={handleChange}
-          />
-          <input
-            type="hidden"
-            name="posterid"
-            value={newForm.posterid}
-            placeholder="poster id"
-            onChange={handleChange}
-          />
-          <input
-            type="hidden"
-            name="likes"
-            value={newForm.likes}
-            placeholder={0}
-            onChange={handleChange}
-          />
-          <Stack direction="horizontal" gap={3} className="stack">
-            <Form.Label className="mb-3">Origami Name</Form.Label>
+      {sessionStorage.getItem("loggedInUser") ? (
+        <div class="container">
+          <form onSubmit={handleSubmit}>
             <input
-              style={{ width: "200px", borderRadius: "5px" }}
-              type="text"
-              name="title"
-              value={newForm.title}
-              placeholder="Name"
+              type="hidden"
+              name="name"
+              value={newForm.name}
+              placeholder="name"
               onChange={handleChange}
             />
-            <Form.Label className="mb-3">End product image</Form.Label>
             <input
-              style={{ width: "300px", borderRadius: "5px" }}
-              type="text"
-              name="img"
-              value={newForm.img}
-              placeholder="Image URL"
+              type="hidden"
+              name="posterid"
+              value={newForm.posterid}
+              placeholder="poster id"
               onChange={handleChange}
             />
-            <Form.Label className="mb-3">Photo instructions</Form.Label>
             <input
-              style={{ width: "300px", borderRadius: "5px" }}
-              type="text"
-              name="reference"
-              value={newForm.reference}
-              placeholder="Image URL (optional)"
+              type="hidden"
+              name="likes"
+              value={newForm.likes}
+              placeholder={0}
               onChange={handleChange}
             />
-          </Stack>
-          <br></br>
-          <br></br>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Control
-              as="textarea"
-              style={{ height: "100px" }}
-              name="description"
-              value={newForm.description}
-              placeholder="Enter origami description"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea2">
-            <Form.Control
-              as="textarea"
-              style={{ height: "300px" }}
-              name="instructions"
-              value={newForm.instructions}
-              placeholder="Enter origami instructions"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Button
-            as="input"
-            type="submit"
-            variant="outline-light"
-            value="Post Origami"
-          />{" "}
-          <br />
-          <br />
-          <br />
-        </form>
-      </div>
+            <Stack direction="horizontal" gap={3} className="stack">
+              <Form.Label className="mb-3">Origami Name</Form.Label>
+              <input
+                style={{ width: "200px", borderRadius: "5px" }}
+                type="text"
+                name="title"
+                value={newForm.title}
+                placeholder="Name"
+                onChange={handleChange}
+              />
+              <Form.Label className="mb-3">End product image</Form.Label>
+              <input
+                style={{ width: "300px", borderRadius: "5px" }}
+                type="text"
+                name="img"
+                value={newForm.img}
+                placeholder="Image URL"
+                onChange={handleChange}
+              />
+              <Form.Label className="mb-3">Photo instructions</Form.Label>
+              <input
+                style={{ width: "300px", borderRadius: "5px" }}
+                type="text"
+                name="reference"
+                value={newForm.reference}
+                placeholder="Image URL (optional)"
+                onChange={handleChange}
+              />
+            </Stack>
+            <br></br>
+            <br></br>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                name="description"
+                value={newForm.description}
+                placeholder="Enter origami description"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea2"
+            >
+              <Form.Control
+                as="textarea"
+                style={{ height: "300px" }}
+                name="instructions"
+                value={newForm.instructions}
+                placeholder="Enter origami instructions"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Button
+              as="input"
+              type="submit"
+              variant="outline-light"
+              value="Post Origami"
+            />{" "}
+            <br />
+            <br />
+            <br />
+          </form>
+        </div>
+      ) : (
+        <p>Please log in to post</p>
+      )}
+
       {origami ? loaded() : loading()}
     </section>
   );

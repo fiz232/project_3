@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 function Login() {
@@ -9,6 +9,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("loggedInUser");
@@ -35,12 +37,14 @@ function Login() {
         sessionStorage.setItem("loggedInUser", JSON.stringify(data));
         setLoggedIn(true);
         console.log("User logged in");
+        navigate("/");
         // Redirect to home page or some other page after successful login
       } else {
         console.log("Username or password is wrong");
       }
     } catch (error) {
       setError(error.message);
+      //setError("Username or password is wrong");
       console.log("Username or password is wrong");
     }
   };
@@ -48,7 +52,9 @@ function Login() {
   const handleLogOut = () => {
     sessionStorage.removeItem("loggedInUser");
     setLoggedIn(false);
+
     console.log("User logged out");
+    navigate("/");
   };
 
   return (

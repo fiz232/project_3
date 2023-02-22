@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
           res.send(foundUser);
           //res.redirect("/origami");
         } else {
-          res.send("FAIL"); //check status on react
+          res.send(JSON.parse("Username or password is wrong")); //check status on react
         }
       }
     }
