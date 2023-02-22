@@ -2,6 +2,8 @@
 
 ## Origami sharing website
 
+In OrigaMe, we provide a platform for origami artists and crafters to share their creativity and for users to learn and communicate. Let's get creative!
+
 ## Challenges
 
 ## Technology in use
