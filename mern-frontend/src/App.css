@@ -18,6 +18,7 @@
 .header {
   box-shadow: 0 0 20px 0 rgba(243, 238, 238, 0.2),
     0 5px 5px 0 rgba(244, 239, 239, 0.24);
+  font-weight: 600;
 }
 
 .crane {
@@ -42,4 +43,9 @@
 
 .stack {
   margin-left: 20px;
+}
+
+.cardImage {
+  width: auto;
+  height: 400px;
 }

@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function DisplayOrigami({ origami, createOrigami }) {
   const [newForm, setNewForm] = useState({
     posterid: "",
     name: "",
     likes: 0,
-    image: "",
+    img: "",
     title: "",
     description: "",
     reference: "",
@@ -28,7 +31,7 @@ export default function DisplayOrigami({ origami, createOrigami }) {
       posterid: "",
       name: "",
       likes: 0,
-      image: "",
+      img: "",
       title: "",
       description: "",
       reference: "",
@@ -38,25 +41,60 @@ export default function DisplayOrigami({ origami, createOrigami }) {
 
   const loaded = () => {
     return (
-      <div>
-        {origami.map((origami, index) => {
-          return (
-            <div key={origami._id}>
-              <h4>Posted by :{origami.name}</h4>
-              <h1>{origami.title}</h1>
-              <img src={origami.image} width={200} alt={origami.name} />
-              <p>Description:{origami.description}</p>
-              <p>Visual reference:</p>
-              <img src={origami.reference} width={400} alt={origami.name} />
-              <p>Instructions:{origami.instructions}</p>
-              <button>Like</button>
-              <p style={{ display: "inline" }}>Likes:{origami.likes}</p>
-              <Link style={{ display: "block" }} to={`/origami/${origami._id}`}>
-                Edit
-              </Link>
-            </div>
-          );
-        })}
+      <div class="container">
+        <Row>
+          <Col className="d-flex">
+            {origami.map((origami, index) => {
+              return (
+                <Card className="m-2" style={{ width: "40rem" }}>
+                  <Card.Img
+                    className="cardImage"
+                    variant="top"
+                    src={origami.img}
+                    alt={origami.name}
+                  />
+                  <Card.Body>
+                    <div key={origami._id}>
+                      <h4>Posted by: {origami.name}</h4>
+                      <Card.Title>
+                        <h1>{origami.title}</h1>
+                      </Card.Title>
+                      <Card.Text>
+                        <br></br>
+                        <h6>Description:</h6>
+                        <p>{origami.description}</p>
+                        <br></br>
+                        <h6>Photo instructions: </h6>
+                        <img
+                          src={origami.reference}
+                          width={400}
+                          alt={origami.name}
+                        />
+                        <br></br>
+                        <br></br>
+                        <h6>Instructions:</h6>
+                        <p>{origami.instructions}</p>
+                        <Button
+                          as="input"
+                          type="submit"
+                          variant="outline-dark"
+                          value="Like"
+                        />{" "}
+                        <p style={{ display: "inline" }}>{origami.likes}</p>
+                        <Link
+                          style={{ display: "block" }}
+                          to={`/origami/${origami._id}`}
+                        >
+                          Edit
+                        </Link>
+                      </Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </Col>
+        </Row>
       </div>
     );
   };
@@ -106,8 +144,8 @@ export default function DisplayOrigami({ origami, createOrigami }) {
             <input
               style={{ width: "300px", borderRadius: "5px" }}
               type="text"
-              name="image"
-              value={newForm.image}
+              name="img"
+              value={newForm.img}
               placeholder="Image URL"
               onChange={handleChange}
             />
@@ -115,7 +153,7 @@ export default function DisplayOrigami({ origami, createOrigami }) {
             <input
               style={{ width: "300px", borderRadius: "5px" }}
               type="text"
-              name="image"
+              name="img"
               value={newForm.reference}
               placeholder="Image URL (optional)"
               onChange={handleChange}
@@ -157,5 +195,4 @@ export default function DisplayOrigami({ origami, createOrigami }) {
       {origami ? loaded() : loading()}
     </section>
   );
-  //origami ? loaded() : loading();
 }

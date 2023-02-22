@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 export default function Header() {
   return (
     <div className="header">
-      <Navbar bg="light" variant="light">
+      <Navbar expand="lg" bg="light" variant="light">
         <Container>
           <Navbar.Brand href="/">
             <img
