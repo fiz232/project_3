@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <div>
-      <h1>FOOD RECIPE APP</h1>
+      <h1>ORIGAMI SHARING APP</h1>
       <nav>
         <Link to="/">
           <div>Home</div>

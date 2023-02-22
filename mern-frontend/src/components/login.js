@@ -57,7 +57,7 @@ function Login() {
             Username:
             {JSON.parse(sessionStorage.getItem("loggedInUser")).username}
             <br />
-            Id:{JSON.parse(sessionStorage.getItem("loggedInUser"))._id}
+            Email:{JSON.parse(sessionStorage.getItem("loggedInUser")).email}
             {console.log(JSON.parse(sessionStorage.getItem("loggedInUser")))}
           </p>
           <button onClick={handleLogOut}>Log Out</button>

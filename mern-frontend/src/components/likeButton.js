@@ -9,19 +9,45 @@ export default function LikeButton({ userLikes, origamiId, editOrigami }) {
 
   let currentLikes = userLikes;
 
-  const [newForm, setNewForm] = useState({
-    likes: likes,
-  });
+  //const [newForm, setNewForm] = useState();
 
-  // useEffect(() => {
-  //   console.log(likes);
-  //   handleSubmitLike();
-  // }, [newForm]);
+  const handleChange = (event) => {
+    if (likeAllowed == false) {
+      return;
+    }
+    //++currentLikes;
+    currentLikes = currentLikes + 1;
+    setLikes(currentLikes);
+    console.log("TEST!! :" + currentLikes);
+    const newFormValue = {
+      likes: currentLikes,
+    };
+    editOrigami(newFormValue, origamiId);
+    setLikeAllowed(false);
+    //console.log(newForm)
+  };
+
+  const handleChangeDecrement = (event) => {
+    if (likeAllowed == false) {
+      return;
+    }
+    //++currentLikes;
+    if (likes >= 1) {
+      currentLikes = currentLikes - 1;
+    }
+    //currentLikes = currentLikes - 1;
+    setLikes(currentLikes);
+    console.log("TEST!! :" + currentLikes);
+    const newFormValue = {
+      likes: currentLikes,
+    };
+    editOrigami(newFormValue, origamiId);
+    setLikeAllowed(false);
+    //console.log(newForm)
+  };
 
   let id = origamiId;
   console.log("origami id is :" + id);
-
-  //console.log("origami is :" origami);
 
   // if (sessionStorage.getItem("loggedInUser") != null) {
   //   id = sessionStorage.getItem(
@@ -63,8 +89,8 @@ export default function LikeButton({ userLikes, origamiId, editOrigami }) {
     <div>
       {/* <h1>Number of likes:</h1> */}
       <p>Current likes is :{likes}</p>
-      <button onClick={incrementLike}>Like</button>
-      <button onClick={decrementLike}>Unlike</button>
+      <button onClick={handleChange}>Like</button>
+      <button onClick={handleChangeDecrement}>Unlike</button>
       {/* <ThemedButton onClick={reset}>Reset</ThemedButton> */}
     </div>
   );

@@ -15,7 +15,7 @@ export default function AboutPage() {
         mollit anim id est laborum.
       </p>
       {/* <PushupCounter /> */}
-      <LikeButton userLikes={0} />
+      {/* <LikeButton userLikes={0} /> */}
     </div>
   );
 }

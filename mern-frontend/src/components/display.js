@@ -52,11 +52,23 @@ export default function DisplayOrigami({
               <img src={origami.reference} width={400} alt={origami.name} />
               <p>Instructions:{origami.instructions}</p>
               {/* <button>Like</button> */}
-              <LikeButton
+              {sessionStorage.getItem("loggedInUser") ? (
+                <div>
+                  <p>User logged in</p>
+                  <LikeButton
+                    userLikes={origami.likes}
+                    origamiId={origami._id}
+                    editOrigami={editOrigami}
+                  />
+                </div>
+              ) : (
+                <p>You can not like this post unless you log in</p>
+              )}
+              {/* <LikeButton
                 userLikes={origami.likes}
                 origamiId={origami._id}
                 editOrigami={editOrigami}
-              />
+              /> */}
               {/* <p style={{ display: "inline" }}>Likes:{origami.likes}</p> */}
               <br />
               <button>
@@ -83,21 +95,21 @@ export default function DisplayOrigami({
     <section className="form-style">
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="hidden"
           name="name"
           value={newForm.name}
           placeholder="name"
           onChange={handleChange}
         />
         <input
-          type="text"
+          type="hidden"
           name="posterid"
           value={newForm.posterid}
           placeholder="poster id"
           onChange={handleChange}
         />
         <input
-          type="number"
+          type="hidden"
           name="likes"
           value={newForm.likes}
           placeholder={0}

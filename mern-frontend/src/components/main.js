@@ -45,6 +45,8 @@ export default function Main() {
 
   //PUT|Edit
   const editOrigami = async (editedData, origamiId) => {
+    console.log("Inside editOrigami:");
+    console.log(editedData);
     await fetch(URL + origamiId, {
       method: "put",
       headers: {
