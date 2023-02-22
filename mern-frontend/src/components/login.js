@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import "../login.css";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function Login() {
   //const [email, setEmail] = useState("");
@@ -51,79 +54,66 @@ function Login() {
   return (
     <div>
       {loggedIn ? (
-        <div>
+        <div className="loggedIn">
           <h2>You are already logged in.</h2>
+          <br></br>
           <p>
-            Username:
+            Username:{" "}
             {JSON.parse(sessionStorage.getItem("loggedInUser")).username}
             <br />
-            Email:{JSON.parse(sessionStorage.getItem("loggedInUser")).email}
+            Email: {JSON.parse(sessionStorage.getItem("loggedInUser")).email}
             {console.log(JSON.parse(sessionStorage.getItem("loggedInUser")))}
           </p>
-          <button onClick={handleLogOut}>Log Out</button>
+          <Button variant="outline-light" onClick={handleLogOut}>
+            Log Out
+          </Button>
         </div>
       ) : (
-        <form onSubmit={handleLogin}>
-          <label>
-            Username:
-            <input
-              type="text"
-              value={username}
-              placeholder="username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <br />
-          <button type="submit">Login</button>
-          {error && <div>{error}</div>}
-        </form>
+        <div class="login-page">
+          <div class="form">
+            <div class="login">
+              <div class="login-header">
+                <h3>LOGIN</h3>
+                <p>Please enter your credentials to login</p>
+              </div>
+            </div>
+            <section className="form-style">
+              <form onSubmit={handleLogin}>
+                <label>
+                  Username:
+                  <input
+                    type="text"
+                    value={username}
+                    placeholder="UserName"
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </label>
+                <br />
+                <label>
+                  Password:
+                  <input
+                    type="password"
+                    value={password}
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </label>
+                <br />
+                <button type="submit">Login</button>
+                {error && <div>{error}</div>}
+                <br />
+                <br />
+                <p class="message">
+                  Not registered? <br />
+                  <Link to="/register">Sign up here</Link>
+                </p>
+              </form>
+            </section>
+          </div>
+        </div>
       )}
     </div>
   );
 }
 
 export default Login;
-
-// export default function LoginPage() {
-
-//   return (
-//     <div>
-//       <h1>Please enter your details to login</h1>
-//       <section className="form-style">
-//         <form onSubmit="">
-//           <input
-//             type="text"
-//             name="name"
-//             value=""
-//             placeholder="Name"
-//             onChange=""
-//           />
-//           <input
-//             type="text"
-//             name="email"
-//             value=""
-//             placeholder="Email"
-//             onChange=""
-//           />
-//           <input
-//             type="text"
-//             name="password"
-//             value=""
-//             placeholder="Password"
-//             onChange=""
-//           />
-//           <button type="submit">Login</button>
-//         </form>
-//       </section>
-//     </div>
-//   );
-// }
