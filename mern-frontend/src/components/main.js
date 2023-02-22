@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import DisplayOrigami from "./display";
 import EditOrigami from "./editOrigami";
 import AboutPage from "./about";
-import LoginPage from "./login";
+//import LoginPage from "./login";
 import RegisterPage from "./register";
+import Login from "./login";
 
 //components: <Index/>,<Show/>,
 
@@ -23,6 +24,10 @@ export default function Main() {
     console.log(data);
     setOrigami(data); //updating origami state with the data retrieved from mongodb
   };
+
+  useEffect(() => {
+    getOrigami();
+  }, []);
 
   //POST|Create
   const createOrigami = async (origami) => {
@@ -67,11 +72,17 @@ export default function Main() {
       <Routes>
         <Route
           path="/"
-          element={<DisplayOrigami origami={origami} createOrigami={createOrigami} />}
+          element={
+            <DisplayOrigami
+              origami={origami}
+              createOrigami={createOrigami}
+              editOrigami={editOrigami}
+            />
+          }
         />
 
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/loginPage" element={<Login />} />
         <Route path="/register" element={<RegisterPage />} />
 
         <Route

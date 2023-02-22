@@ -16,7 +16,7 @@ export default function EditOrigami({ origami, editOrigami, deleteOrigami }) {
     posterid: art.posterid,
     name: art.name,
     likes: art.likes,
-    image: art.image,
+    img: art.img,
     title: art.title,
     description: art.description,
     reference: art.reference,
@@ -48,7 +48,7 @@ export default function EditOrigami({ origami, editOrigami, deleteOrigami }) {
     <div>
       <h4>Posted by :{art.name}</h4>
       <h1>{art.title}</h1>
-      <img src={art.image} width={200} alt={art.name} />
+      <img src={art.img} width={200} alt={art.name} />
       <p>Description:{art.description}</p>
       <p>Visual reference:</p>
       <img src={art.reference} width={400} alt={art.name} />
@@ -73,9 +73,9 @@ export default function EditOrigami({ origami, editOrigami, deleteOrigami }) {
         Image:
         <input
           type="text"
-          name="image"
-          value={newForm.image}
-          placeholder="image"
+          name="img"
+          value={newForm.img}
+          placeholder="img"
           onChange={handleChange}
         />
         Description:

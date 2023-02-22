@@ -1,3 +1,6 @@
+import PushupCounter from "./increment";
+import LikeButton from "./likeButton";
+
 export default function AboutPage() {
   return (
     <div>
@@ -11,6 +14,8 @@ export default function AboutPage() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
+      {/* <PushupCounter /> */}
+      <LikeButton userLikes={0} />
     </div>
   );
 }

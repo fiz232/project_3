@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LikeButton from "./likeButton";
 
-export default function DisplayOrigami({ origami, createOrigami }) {
+export default function DisplayOrigami({
+  origami,
+  createOrigami,
+  editOrigami,
+}) {
   const [newForm, setNewForm] = useState({
     posterid: "",
     name: "",
     likes: 0,
-    image: "",
+    img: "",
     title: "",
     description: "",
     reference: "",
@@ -25,7 +30,7 @@ export default function DisplayOrigami({ origami, createOrigami }) {
       posterid: "",
       name: "",
       likes: 0,
-      image: "",
+      img: "",
       title: "",
       description: "",
       reference: "",
@@ -41,16 +46,28 @@ export default function DisplayOrigami({ origami, createOrigami }) {
             <div key={origami._id}>
               <h4>Posted by :{origami.name}</h4>
               <h1>{origami.title}</h1>
-              <img src={origami.image} width={200} alt={origami.name} />
+              <img src={origami.img} width={200} alt={origami.name} />
               <p>Description:{origami.description}</p>
               <p>Visual reference:</p>
               <img src={origami.reference} width={400} alt={origami.name} />
               <p>Instructions:{origami.instructions}</p>
-              <button>Like</button>
-              <p style={{ display: "inline" }}>Likes:{origami.likes}</p>
-              <Link style={{ display: "block" }} to={`/origami/${origami._id}`}>
-                Edit
-              </Link>
+              {/* <button>Like</button> */}
+              <LikeButton
+                userLikes={origami.likes}
+                origamiId={origami._id}
+                editOrigami={editOrigami}
+              />
+              {/* <p style={{ display: "inline" }}>Likes:{origami.likes}</p> */}
+              <br />
+              <button>
+                <Link
+                  style={{ display: "block" }}
+                  to={`/origami/${origami._id}`}
+                >
+                  Edit
+                </Link>
+              </button>
+              <hr />
             </div>
           );
         })}
@@ -97,9 +114,9 @@ export default function DisplayOrigami({ origami, createOrigami }) {
         Image:
         <input
           type="text"
-          name="image"
-          value={newForm.image}
-          placeholder="image"
+          name="img"
+          value={newForm.img}
+          placeholder="img"
           onChange={handleChange}
         />
         Description:
@@ -114,7 +131,7 @@ export default function DisplayOrigami({ origami, createOrigami }) {
         Reference:
         <input
           type="text"
-          name="image"
+          name="reference"
           value={newForm.reference}
           placeholder="visual reference"
           onChange={handleChange}

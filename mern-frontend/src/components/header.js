@@ -11,13 +11,13 @@ export default function Header() {
         <Link to="/about">
           <div>About</div>
         </Link>
-        <Link to="/login">
+        <Link to="/loginPage">
           <div>Login</div>
         </Link>
         <Link to="/register">
           <div>Register</div>
         </Link>
-        <p>You are not logged in</p>
+        {/* <p>You are not logged in</p> */}
       </nav>
     </div>
   );
