@@ -19,7 +19,7 @@ function Login() {
     }
   }, []);
 
-  const loginURL = "http://localhost:3004/login/";
+  const loginURL = "https://origame.onrender.com/login/";
 
   const handleLogin = async (e) => {
     e.preventDefault(); //prevents defaulting to get request
