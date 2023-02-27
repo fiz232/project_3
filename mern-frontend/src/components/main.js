@@ -10,7 +10,7 @@ import Login from "./login";
 //components: <Index/>,<Show/>,
 
 export default function Main() {
-  const URL = "https://origame.onrender.com/origami/";
+  const URL = process.env.REACT_APP_BACKEND_URL;
 
   const [origami, setOrigami] = useState("");
 

@@ -4,7 +4,7 @@ import "../login.css";
 import Button from "react-bootstrap/Button";
 
 export default function RegisterPage() {
-  const URL = "https://origame.onrender.com/signup/";
+  const URL = process.env.REACT_APP_BACKEND_SIGNUP_URL;
 
   //const [newUser, setNewUser] = useState("");
 

@@ -19,7 +19,7 @@ function Login() {
     }
   }, []);
 
-  const loginURL = "https://origame.onrender.com/login/";
+  const loginURL = process.env.REACT_APP_BACKEND_LOGIN_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault(); //prevents defaulting to get request
